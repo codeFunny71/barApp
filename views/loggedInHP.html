@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Bartender</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="styles/logInStyles.css" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="mobileHomeVideo">
+        <source src="video/bubblingBeer.mp4" type="video/mp4">
+    </video>
+
+    <!-- div containing main menu -->
+    <div id="loggedInDiv">
+        <div class="col-sm-12" id="logoutButton">
+            <a href="/328/finalProject">Logout</a>
+        </div>
+
+        <img src="images/homePageImg.jpg"><br><br>
+
+        <!-- Order a Drink tab -->
+        <!--<div class="menuItem" id="orderDrink">-->
+            <!--<h3>Order a Drink</h3>-->
+        <!--</div><br><br>-->
+
+        <form action="order" method="post">
+            <input class="menuItem" id="orderDrink" type="submit" value="Order a Drink">
+        </form>
+        <br><br>
+
+        <form action="viewTab" method="post">
+            <input class="menuItem" id="viewTab" type="submit" value="View Tab">
+        </form>
+        <br><br>
+
+        <form action="payTab" method="post">
+            <input class="menuItem" id="payTab" type="submit" value="Pay Tab">
+        </form>
+        <br><br>
+
+        <form action="account" method="post">
+            <input class="menuItem" id="accountInfo" type="submit" value="Account Information">
+        </form>
+        <br><br>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <form action="" method="post" >
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Item Price</th>
+                <th scope="col"></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{ @menuItems }}" value="{{ @element }}">
+                <tr>
+                    <td>{{ @element[image] }}</td>
+                    <td>{{ @element[itemName]}}</td>
+                    <td>{{ @element[description]}}</td>
+                    <td>{{ @element[itemPrice]}}</td>
+                    <td><button class="btn" type="submit" value="{{@element['itemID']}}" name="submit">ADD</button></td>
+                </tr>
+            </repeat>
+
+
+            </tbody>
+        </table>
+    </form>
+</div>
+<div>
+    <repeat group="{{ @menuItems }}" value="{{ @item }}">
+        <check if="{{@orderItems && in_array(@item[itemID], @orderItems)}}">
+            <p class="{{@total += @item[itemPrice] }}">{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
+        </check>
+
+
+    </repeat>
+    <h4> Total: {{@total }}</h4>
+</div>
+</body>
+</html>
