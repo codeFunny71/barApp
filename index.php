@@ -77,12 +77,14 @@ $f3->route('GET|POST /drinkOrder',
             array_push($orderItems,$itemID);
             $_SESSION['orderItems'] = $orderItems;
             $f3->set('orderItems',$orderItems );
+            $_SESSION['total'] = $f3->get('total');
+
         }
 
         if(isset($_POST['enter'])) {
+            $total = $_SESSION['total'];
             $orderItems = $_SESSION['orderItems'];
             $lineItems = implode(",",$orderItems);
-            $total = $f3->get('total');
             $customerID = Database::getCustomerID($customerInfo->getEmail());
             $newOrder = new Orders($customerID, 1, $lineItems, $total);
             Database::insertOrder($newOrder);
