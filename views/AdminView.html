@@ -12,21 +12,46 @@
 <form action="#" method="post">
     <div>
         <div>
-            <repeat group="{{ @menuItems }}" value="{{ @item }}">
-                <check if="{{@orderItems && in_array(@item[itemID], @orderItems)}}">
-                    <p class="{{@total += @item[itemPrice] }}">{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
-                </check>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Customer ID</th>
+                        <th scope="col">Order Items</th>
+                        <th scope="col">Filled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <repeat group="{{ @orders }}" value="{{ @order }}">
+                    <tr>
+                        <td>{{@order[orderID]}}</td>
+                        <td>{{@order[customerID]}}</td>
+                        <td>{{@order[orderItems]}}</td>
+                        <!-- need to ad   -->
+                        <td>
+                            <check if="@order[status] == 1">
+                                <true>
+                                    <input type="checkbox" checked>
+                                </true>
+                                <false>
+                                    <input type="checkbox">
+                                </false>
+
+                            </check>
+                        </td>
+                        <td>{{@element[image]}}</td>
+                        <td>{{@element[interests]}}</td>
+                    </tr>
 
 
-            </repeat>
-            <h4> Total: {{@total }}</h4>
+                </repeat>
+                <h4> Total: {{@total }}</h4>
         </div>
         <div>
             <repeat group="{{ @menuItems }}" value="{{ @item }}">
                 <check if="{{@orderItems && in_array(@item[itemID], @orderItems)}}">
                     <p class="{{@total += @item[itemPrice] }}">{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
                 </check>
-
 
             </repeat>
             <h4> Total: {{@total }}</h4>

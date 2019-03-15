@@ -71,7 +71,7 @@ $f3->route('GET|POST /drinkOrder',
         $f3->set('orderItems',$_SESSION['orderItems'] );
         //print_r($_POST);
 
-        if(isset($_POST['submit'])) {
+        if(isset($_POST['submit']) ) {
             $itemID = $_POST['submit'];
             $orderItems = $_SESSION['orderItems'];
             array_push($orderItems,$itemID);
@@ -79,10 +79,39 @@ $f3->route('GET|POST /drinkOrder',
             $f3->set('orderItems',$orderItems );
         }
 
+        if(isset($_POST['enter'])) {
+            $orderItems = $_SESSION['orderItems'];
+            $lineItems = implode(",",$orderItems);
+            $total = $f3->get('total');
+            $customerID = Database::getCustomerID($customerInfo->getEmail());
+            $newOrder = new Orders($customerID, 1, $lineItems, $total);
+            Database::insertOrder($newOrder);
+            $orderItems = [];
+            $_SESSION['orderItems'] = $orderItems;
+
+            $f3->set('total',0);
+            $f3->set('orderItems',$_SESSION['orderItems'] );
+
+        }
+
         $template = new Template();
 
         echo $template->render('views/drinkOrder.html');
     });
+
+//Display admin view
+$f3->route('GET|POST /AdminView',
+    function($f3) {
+        $orders = Database::getOrders();
+
+//        $orderItems = $_SESSION['orderItems'];
+//        $orderItems = $orders->getItemsOrdered();
+        $f3->set('orders', $orders);
+        $f3->set('orderItems',$_SESSION['orderItems'] );
+        $template = new Template();
+        echo $template->render('views/AdminView.html');
+    }
+);
 
 
 

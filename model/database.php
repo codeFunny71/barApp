@@ -76,16 +76,16 @@ class Database
         return $result;
     }
 
-    public static function getCustomerID($id)
+    public static function getCustomerID($emailAddress)
     {
 
         global $dbh;
         //1. define the query
-        $sql = "SELECT * FROM customers WHERE customerID=:id";
+        $sql = "SELECT * FROM customers WHERE emailAddress=:emailAddress";
         //2. prepare the statement
         $statement = $dbh->prepare($sql);
         //3. bind parameters
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':emailAddress', $emailAddress, PDO::PARAM_STR);
         //4. execute the statement
         $statement->execute();
         //5. return the result
@@ -133,5 +133,48 @@ class Database
         return $result;
     }
 
+    public static function insertOrder($newOrder)
+    {
+        global $dbh;
+        //1. define the query
+        $sql = "INSERT INTO orders (orderDate, customerID, barID, itemsOrdered, tip, tax, total, status)
+            VALUES (CURDATE(), :customerID, :barID, :itemsOrdered, :tip, :tax, :total, :status)";
+
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':customerID', $newOrder->getCustomerID(), PDO::PARAM_STR);
+        $statement->bindParam(':barID', $newOrder->getBarID(), PDO::PARAM_STR);
+        $statement->bindParam(':itemsOrdered', $newOrder->getItemsOrdered(), PDO::PARAM_STR);
+        $statement->bindParam(':tip', $newOrder->getTip(), PDO::PARAM_STR);
+        $statement->bindParam(':tax', $newOrder->getTax(), PDO::PARAM_STR);
+        $statement->bindParam(':total', $newOrder->getTotal(), PDO::PARAM_STR);
+        $statement->bindParam(':status', $newOrder->getStatus(), PDO::PARAM_STR);
+
+        //4. execute the statement
+        $success = $statement->execute();
+        //5. return the result
+        return $success;
+
+    }
+
+    /**
+     * @return array
+     */
+    public static function getOrders()
+    {
+        global $dbh;
+        //1. define the query
+        $sql = "SELECT * FROM Orders ORDER BY orderID";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 
 }
