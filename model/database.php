@@ -6,7 +6,15 @@ class Database
     public function connect()
     {
         try {
-            require_once '/home/mabsherg/config.php';
+            if ($_SERVER['USER'] == 'mabsherg')
+            {
+                require_once '/home/mabsherg/config.php';
+            }
+
+            else if ($_SERVER['USER'] == 'mprelesn')
+            {
+                require_once '/home/mprelesn/config.php';
+            }
             //Instantiate a database object
             $dbh = new PDO(DB_DSN, DB_USERNAME,
                 DB_PASSWORD);

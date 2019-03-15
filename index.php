@@ -33,7 +33,14 @@ if(!$_SESSION['orderItems']) {
 
 
 //Define route
-$f3->route('GET|POST /',
+$f3->route('GET|POST /', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/home.html');
+});
+
+//sign up route
+$f3->route('GET|POST /signup',
     function($f3) {
 
         if(isset($_POST['submit'])) {
@@ -55,8 +62,7 @@ $f3->route('GET|POST /',
             $f3->reroute('/drinkOrder');
 
         }
-        //echo '<h1>My Dating Website</h1>';
-        $view = new View;
+        $view = new Template;
         echo $view->render('views/signUp.html');
     }
 );
