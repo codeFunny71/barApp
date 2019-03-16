@@ -1,5 +1,5 @@
 //add spans with errors into html do display
-document.getElementById("pizzaform").onsubmit = validate;
+document.getElementById("loginForm").onsubmit = validate;
 
 function validate()
 {
@@ -10,9 +10,14 @@ function validate()
     var password = document.getElementById("password").value;
     if (email == "" || password == "")
     {
-        var loginError = document.getElementById("loginError");
-        loginError.style.visibility = "visible";
+        // var loginError = document.getElementById("loginError");
+        // loginError.style.visibility = "visible";
+        alert("Email or password is incorrect. Please try again.");
         isValid = false;
     }
 
+    if (!isValid)
+    {
+        return;
+    }
 }
