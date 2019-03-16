@@ -109,6 +109,7 @@ $f3->route('GET|POST /drinkOrder',
                     array_push($queueItem, $item['itemName']);
                 }
             }
+            $lineItems = implode(",", $queueItem);
 
             $customerID = $_SESSION['customerID'];
             $newOrder = new Orders($customerID, 1, $lineItems, $total);
