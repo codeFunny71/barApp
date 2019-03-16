@@ -166,7 +166,7 @@ class Database
     {
         global $dbh;
         //1. define the query
-        $sql = "SELECT * FROM Orders ORDER BY orderID";
+        $sql = "SELECT * FROM orders ORDER BY orderID";
         //2. prepare the statement
         $statement = $dbh->prepare($sql);
         //3. bind parameters
