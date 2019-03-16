@@ -10,6 +10,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="styles/signUpStyles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/signupValidation.css">
 </head>
 <body>
     <video autoplay muted loop id="mobileHomeVideo">
@@ -18,7 +19,7 @@
 
     <!-- div containing sign up -->
     <div id="signUpDiv">
-        <form action="#" method="post">
+        <form action="#" method="post" id="signupForm">
             <h1>Sign Up</h1>
             <hr>
             <div class="row border-0 ml-0">
@@ -28,18 +29,27 @@
                         <div>
                             <input type="text" class="form-control"  name="fname" id="fname">
                         </div>
+                        <span class="err" id="fnameError">
+                            First name is invalid. Please try again.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="lname" >Last Name</label>
                         <div>
                             <input type="text" class="form-control"  name="lname" id="lname">
                         </div>
+                        <span class="err" id="lnameError">
+                            Last name is invalid. Please try again.
+                        </span>
                     </div>
                     <div class="form-group"><!--Age -->
                         <label class="font-weight-bold" for="address" >Address</label>
                         <div>
                             <input type="text" class="form-control"  name="address" id="address">
                         </div>
+                        <span class="err" id="addressError">
+                            Address is invalid. Please try again.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="city">City</label>
@@ -48,32 +58,50 @@
                                 <input type="text" class="form-control"  name="city" id="city">
                             </div>
                         </div>
+                        <span class="err" id="cityError">
+                            City is invalid. Please try again.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="state" >State</label>
                         <div>
                             <input type="text" class="form-control"  name="state" id="state">
                         </div>
+                        <span class="err" id="stateError">
+                            State is invalid. Please try again.
+                        </span>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-bold" for="zip" >Zip</label>
                         <div>
                             <input type="text" class="form-control"  name="zip" id="zip">
                         </div>
+                        <span class="err" id="zipError">
+                            Zipcode is invalid. Please try again.
+                        </span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label class="font-weight-bold" for="phone" >Phone</label>
                     <div>
                         <input type="text" class="form-control"  name="phone" id="phone">
+                        <span class="err" id="phoneError">
+                            Phone number is invalid. Please try again.
+                        </span>
                     </div>
                     <label class="font-weight-bold" for="email" >Email</label>
                     <div>
                         <input type="text" class="form-control"  name="email" id="email">
+                        <span class="err" id="emailError">
+                            Email is invalid. Please try again.
+                        </span>
                     </div>
                     <label class="font-weight-bold" for="password" >Password</label>
                     <div>
                         <input type="text" class="form-control"  name="password" id="password">
+                        <span class="err" id="passwordError">
+                            Password is invalid. Please try again.
+                        </span>
                     </div>
                 </div>
             </div>
@@ -89,5 +117,6 @@
             </div>
         </form>
     </div>
+    <script src="scripts/signupValidation.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-//add spans with errors into html do display
 document.getElementById("loginForm").onsubmit = validate;
 
 function validate()
@@ -16,8 +15,5 @@ function validate()
         isValid = false;
     }
 
-    if (!isValid)
-    {
-        return;
-    }
+    return isValid;
 }
