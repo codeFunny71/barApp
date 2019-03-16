@@ -15,7 +15,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Order ID</th>
+                        <th scope="col">4Order ID</th>
                         <th scope="col">Customer ID</th>
                         <th scope="col">Order Items</th>
                         <th scope="col">Filled</th>
@@ -31,25 +31,18 @@
                         <td>
                             <check if="@order[status] == 1">
                                 <true>
-                                    <input type="checkbox" checked>
+                                    <input name="status" type="checkbox" checked>
                                 </true>
                                 <false>
-                                    <input type="checkbox">
+                                    <input name="status" type="checkbox">
                                 </false>
 
                             </check>
                         </td>
                     </tr>
                 </repeat>
-        </div>
-        <div>
-            <repeat group="{{ @menuItems }}" value="{{ @item }}">
-                <check if="{{@orderItems && in_array(@item[itemID], @orderItems)}}">
-                    <p class="{{@total += @item[itemPrice] }}">{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
-                </check>
-
-            </repeat>
-            <h4> Total: {{@total }}</h4>
+                </tbody>
+            </table>
         </div>
     </div>
 </form>

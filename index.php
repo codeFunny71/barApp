@@ -1,5 +1,5 @@
 <?php
-
+//ob_start();
 /**
  * Marcus Absher
  * Date: 3-1-19
@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 session_start();
 require_once('model/database.php');
-
+//print_r($_SESSION);
 
 $valid = false;
 //create an instance of the Base class
@@ -30,7 +30,7 @@ if(!$_SESSION['orderItems']) {
     $_SESSION['orderItems'] = [];
 }
 
-
+$queueItem = [];
 
 //Define route
 $f3->route('GET|POST /', function() {
@@ -55,9 +55,10 @@ $f3->route('GET|POST /signup',
             $password = $_POST['password'];
 
             $newCustomer = new Customer($fname, $lname, $address, $city, $state, $zip, $phone, $email, $password);
-            //$data = new Database();
-            Database::insertCustomer($newCustomer);
 
+            Database::insertCustomer($newCustomer);
+            $customerID = Database::getCustomerID($email);
+            $_SESSION['customerID'] = $customerID;
             $_SESSION['newCustomer'] = $newCustomer;
             $f3->reroute('/drinkOrder');
 
@@ -70,12 +71,16 @@ $f3->route('GET|POST /signup',
 $f3->route('GET|POST /drinkOrder',
     function($f3) {
         $total = 0;
+        $itemNames = [];
+        //pulling emailAddress
+
         $customerInfo = $_SESSION['newCustomer'];
         $menuItems = Database::getMenuItems();
         $f3->set('menuItems', $menuItems);
         $f3->set('total', $total);
         $f3->set('orderItems',$_SESSION['orderItems'] );
-        //print_r($_POST);
+        print_r($_POST);
+
 
         if(isset($_POST['submit']) ) {
             $itemID = $_POST['submit'];
@@ -83,15 +88,29 @@ $f3->route('GET|POST /drinkOrder',
             array_push($orderItems,$itemID);
             $_SESSION['orderItems'] = $orderItems;
             $f3->set('orderItems',$orderItems );
-            $_SESSION['total'] = $f3->get('total');
+
+            foreach ($menuItems as $item){
+               if(in_array($item['itemID'], $orderItems)){
+                   $total += $item['itemPrice'];
+               }
+            }
+            $f3->set('total',$total );
 
         }
 
         if(isset($_POST['enter'])) {
-            $total = $_SESSION['total'];
+
+            $total = $_POST['total'];
             $orderItems = $_SESSION['orderItems'];
             $lineItems = implode(",",$orderItems);
-            $customerID = Database::getCustomerID($customerInfo->getEmail());
+
+            foreach ($menuItems as $item){
+                if(in_array($item['itemID'], $orderItems)){
+                    array_push($queueItem, $item['itemName']);
+                }
+            }
+
+            $customerID = $_SESSION['customerID'];
             $newOrder = new Orders($customerID, 1, $lineItems, $total);
             Database::insertOrder($newOrder);
             $orderItems = [];
@@ -99,7 +118,7 @@ $f3->route('GET|POST /drinkOrder',
 
             $f3->set('total',0);
             $f3->set('orderItems',$_SESSION['orderItems'] );
-
+            $f3->reroute('/AdminView');
         }
 
         $template = new Template();
@@ -111,16 +130,15 @@ $f3->route('GET|POST /drinkOrder',
 $f3->route('GET|POST /AdminView',
     function($f3) {
         $orders = Database::getOrders();
+        $menuItems = Database::getMenuItems();
 
-//        $orderItems = $_SESSION['orderItems'];
-//        $orderItems = $orders->getItemsOrdered();
         $f3->set('orders', $orders);
-        $f3->set('orderItems',$_SESSION['orderItems'] );
+        $f3->set('menuItems',$menuItems);
+
         $template = new Template();
         echo $template->render('views/AdminView.html');
     }
 );
 
-
-
 $f3->run();
+//ob_flush();

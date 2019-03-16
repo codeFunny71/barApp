@@ -40,13 +40,16 @@
 <div>
     <repeat group="{{ @menuItems }}" value="{{ @item }}">
         <check if="{{@orderItems && in_array(@item[itemID], @orderItems)}}">
-            <p class="{{@total += @item[itemPrice] }}">{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
+            <p>{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
         </check>
 
 
     </repeat>
     <h4> Total: {{@total }}</h4>
-    <form action="#" method="post"><button type="submit" name="enter" id="enter">ENTER ORDER</button></form>
+    <form action="#" method="post">
+        <input type="hidden" name="total" value="{{@total}}">
+        <button type="submit" name="enter" id="enter">ENTER ORDER</button>
+    </form>
 </div>
 </body>
 </html>

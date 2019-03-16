@@ -74,12 +74,6 @@ class Database
         $statement->execute();
         //5. return the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //print_r($result);
-//        if ($result[premium] == 1){
-//            $admin = new PremiumMember($result[],$result[],$result[],$result[],$result[],);
-//        }else{
-//            $admin = new Member($result[],$result[],$result[],$result[],$result[],$result[]);
-//        }
 
         return $result;
     }
