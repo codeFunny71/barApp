@@ -215,6 +215,10 @@ $f3->route('GET|POST /drinkOrder',
 //Display admin view
 $f3->route('GET|POST /AdminView',
     function($f3) {
+        if(isset($_POST['submit'])) {
+            $orderID = $_POST['submit'];
+            Database::updateOrders($orderID);
+        }
         $orders = Database::getOrders();
         $menuItems = Database::getMenuItems();
 

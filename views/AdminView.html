@@ -23,29 +23,18 @@
                 </thead>
                 <tbody>
                 <repeat group="{{ @orders }}" value="{{ @order }}">
+                    <check if="@order[status] == 0">
                     <tr>
                         <td>{{@order[orderID]}}</td>
                         <td>{{@order[customerID]}}</td>
                         <td>{{@order[itemsOrdered]}}</td>
                         <!-- need to ad   -->
-                        <td>
-                            <check if="@order[status] == 1">
-                                <true>
-                                    <input name="status" type="checkbox" checked>
-                                </true>
-                                <false>
-                                    <input name="status" type="checkbox">
-                                </false>
-
-                            </check>
-                        </td>
+                        <td><button class="btn" type="submit" value="{{@order['orderID']}}" name="submit">Complete</button></td>
                     </tr>
+                    </check>
                 </repeat>
                 </tbody>
             </table>
-        </div>
-        <div>
-            <button type="submit" name="enter" id="enter">ENTER ORDER</button>
         </div>
     </div>
 </form>

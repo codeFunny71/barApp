@@ -179,4 +179,27 @@ class Database
         return $result;
     }
 
+
+    /**
+     *
+     * @param $orderID
+     * @return array
+     */
+    public static function updateOrders($orderID)
+    {
+        global $dbh;
+        //1. define the query
+        $sql = "UPDATE orders SET status = 1 WHERE orderID = :orderID";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':orderID', $orderID, PDO::PARAM_STR);
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 }
