@@ -1,15 +1,13 @@
 <?php
-//***add require to index page to access this***
-
 //check name
 function validName($fname, $lname)
 {
-    if(!ctype_alpha($fname) OR $fname == "") //if the name does not only contain letters
+    if(!ctype_alpha($fname) or $fname == "") //if the name does not only contain letters
     {
         return false;
     }
 
-    else if(!(preg_match('/^[a-z]+$/i',$lname)) OR $lname == "") //if the name does not only contain letters
+    else if(!(preg_match('/^[a-z]+$/i',$lname)) || $lname == "") //if the name does not only contain letters
     {
         return false;
     }
@@ -53,7 +51,7 @@ function validState($state)
 //check zip
 function validZip($zip)
 {
-    if(preg_match('/^[a-z]+$/i',$zip) OR $zip == "" OR strlen((string)$zip) != 5) //if it contains letters or wrong amount of numbers
+    if(preg_match('/^[a-z]+$/i',$zip) || $zip == "" || strlen((string)$zip) != 5) //if it contains letters or wrong amount of numbers
     {
         return false;
     }
@@ -64,7 +62,7 @@ function validZip($zip)
 //check phone
 function validPhone($phone)
 {
-    if(preg_match('/^[a-z]+$/i',$phone) OR $phone == "" OR strlen((string)$phone) != 10) //if the phone contains letters
+    if(preg_match('/^[a-z]+$/i',$phone) || $phone == "" || strlen((string)$phone) != 10) //if the phone contains letters
     {
         return false;
     }

@@ -14,6 +14,7 @@ error_reporting(E_ALL);
 require_once('vendor/autoload.php');
 session_start();
 require_once('model/database.php');
+require_once('model/validation.php');
 //print_r($_SESSION);
 
 $valid = false;
@@ -44,6 +45,9 @@ $f3->route('GET|POST /signup',
     function($f3) {
 
         if(isset($_POST['submit'])) {
+
+            $isValid = true;
+
             $fname = $_POST['fname'];
             $lname = $_POST['lname'];
             $email = $_POST['email'];
@@ -54,15 +58,81 @@ $f3->route('GET|POST /signup',
             $phone = $_POST['phone'];
             $password = $_POST['password'];
 
-            $newCustomer = new Customer($fname, $lname, $address, $city, $state, $zip, $phone, $email, $password);
+            if(validName($fname, $lname))
+            {
+                $_SESSION['fname'] = $fname;
+                $_SESSION['lname'] = $lname;
+            }
+            else
+            {
+                $isValid = false;
+            }
 
-            Database::insertCustomer($newCustomer);
-            $customerID = Database::getCustomerID($email);
-            $custID = $customerID['customerID'];
-            $_SESSION['customerID'] = $custID;
-            $_SESSION['newCustomer'] = $newCustomer;
-            $f3->reroute('/drinkOrder');
+            if(validAddress($address))
+            {
+                $_SESSION['address'] = $address;
+            }
+            else
+            {
+                $isValid = false;
+            }
 
+            if(validCity($city))
+            {
+                $_SESSION['city'] = $city;
+            }
+            else
+            {
+                $isValid = false;
+            }
+
+            if(validState($state))
+            {
+                $_SESSION['state'] = $state;
+            }
+            else
+            {
+                $isValid = false;
+            }
+
+            if(validZip($zip))
+            {
+                $_SESSION['zip'] = $zip;
+            }
+            else
+            {
+                $isValid = false;
+            }
+
+            if(validPhone($phone))
+            {
+                $_SESSION['phone'] = $phone;
+            }
+            else
+            {
+                $isValid = false;
+            }
+
+            if(validEmail($email))
+            {
+                $_SESSION['email'] = $email;
+            }
+            else
+            {
+                $isValid = false;
+            }
+
+            if ($isValid)
+            {
+                $newCustomer = new Customer($fname, $lname, $address, $city, $state, $zip, $phone, $email, $password);
+
+                Database::insertCustomer($newCustomer);
+                $customerID = Database::getCustomerID($email);
+                $custID = $customerID['customerID'];
+                $_SESSION['customerID'] = $custID;
+                $_SESSION['newCustomer'] = $newCustomer;
+                $f3->reroute('/drinkOrder');
+            }
         }
         $view = new Template;
         echo $view->render('views/signUp.html');
