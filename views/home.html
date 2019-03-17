@@ -23,16 +23,16 @@
                 <h1 id="homeHeaderStyles">Online Bartender</h1><br>
                 <form action="homepage" method="post" id="homeForm">
                     <label>Email:
-                        <input type="text" id="email"><br><br>
+                        <input type="text" id="email" name="email"><br><br>
                     </label><br>
                     <label>Password:
-                        <input type="text" id="password"><br><br>
+                        <input type="text" id="password" name="password"><br><br>
                     </label>
                     <span class="err" id="loginError">
                     Email and/or password are incorrect. Please try again.
                     </span>
                     <div id="buttonStyles">
-                        <button id="submitLogIn" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="submitLogIn" type="submit" name="submitLogIn" class="btn btn-primary">Submit</button>
                     </div>
                     <a href="signup" id="linkStyles">Sign up</a><br>
                     <a href="adminLogin">Login as Admin</a>
