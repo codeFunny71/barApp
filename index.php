@@ -135,8 +135,7 @@ $f3->route('GET|POST /signup',
 
                 Database::insertCustomer($newCustomer);
                 $customerID = Database::getCustomerID($email);
-                $custID = $customerID['customerID'];
-                $_SESSION['customerID'] = $custID;
+                $_SESSION['customerID'] = $customerID;
                 $_SESSION['newCustomer'] = $newCustomer;
                 $f3->reroute('/drinkOrder');
             }
@@ -180,7 +179,7 @@ $f3->route('GET|POST /drinkOrder',
             $queueItem = "";
             $total = $_POST['total'];
             $orderItems = $_SESSION['orderItems'];
-            $lineItems = implode(",",$orderItems);
+            //$lineItems = implode(",",$orderItems);
 
             foreach ($menuItems as $item){
                 foreach ($orderItems as $drinkID){
@@ -190,14 +189,6 @@ $f3->route('GET|POST /drinkOrder',
                 }
 
             }
-//            foreach ($menuItems as $item){
-//                if($item['itemID'], $orderItems)){
-//                    array_push($queueItem, $item['itemName']);
-//                }
-//            }
-
-//            $lineItems = implode(",", $queueItem);
-
             $customerID = $_SESSION['customerID'];
             $newOrder = new Orders($customerID, 1, $queueItem, $total);
             Database::insertOrder($newOrder);
