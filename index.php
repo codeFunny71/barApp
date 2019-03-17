@@ -40,6 +40,13 @@ $f3->route('GET|POST /', function() {
     echo $template->render('views/home.html');
 });
 
+//Define route
+$f3->route('GET|POST /home', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/loggedInHP.html');
+});
+
 //sign up route
 $f3->route('GET|POST /signup',
     function($f3) {
@@ -190,14 +197,14 @@ $f3->route('GET|POST /drinkOrder',
 
             }
             $customerID = $_SESSION['customerID'];
-            $newOrder = new Orders($customerID, 1, $queueItem, $total);
+            $newOrder = new Orders((int)$customerID, 1, $queueItem, $total);
             Database::insertOrder($newOrder);
             $orderItems = [];
             $_SESSION['orderItems'] = $orderItems;
 
             $f3->set('total',0);
             $f3->set('orderItems',$_SESSION['orderItems'] );
-            $f3->reroute('/AdminView');
+            $f3->reroute('/home');
         }
 
         $template = new Template();
