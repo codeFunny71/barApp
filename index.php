@@ -34,7 +34,45 @@ if(!$_SESSION['orderItems']) {
 
 
 //Define route
-$f3->route('GET|POST /', function() {
+$f3->route('GET|POST /', function($f3) {
+    global $dbh;
+
+    if (!empty($_POST))
+    {
+        if (empty($_POST['email']) || empty($_POST['password']))
+        {
+            "<p>Must enter both email and password. Please try again.</p>";
+            return;
+        }
+
+        //1. define the query
+        $sql = "SELECT * FROM customers WHERE emailAddress=:emailAddress AND password=:password";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':emailAddress', $_POST['email'], PDO::PARAM_STR);
+        $statement->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+        if (!empty($result))
+        {
+            //reroute
+            $f3 -> reroute('/home');
+        }
+
+        else
+        {
+//            "<p>Email or password are incorrect. Please try again.</p>";
+//            $f3 -> reroute('/');
+        }
+    }
+
     //load a template
     $template = new Template();
     echo $template->render('views/home.html');
@@ -45,6 +83,36 @@ $f3->route('GET|POST /home', function() {
     //load a template
     $template = new Template();
     echo $template->render('views/loggedInHP.html');
+});
+
+//Define route
+$f3->route('GET|POST /adminLogin', function($f3) {
+    global $dbh;
+
+    if (!empty($_POST))
+    {
+        //1. define the query
+        $sql = "SELECT * FROM customers WHERE emailAddress=:emailAddress AND password=:password";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':emailAddress', $_POST['email'], PDO::PARAM_STR);
+        $statement->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if (true)
+        {
+            //reroute
+            $f3 -> reroute('/AdminView');
+        }
+    }
+
+    //load a template
+    $template = new Template();
+    echo $template->render('views/adminLogin.html');
 });
 
 //sign up route
