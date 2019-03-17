@@ -65,6 +65,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['name']", "Name is not entered correctly. Please try again.");
                 $isValid = false;
             }
 
@@ -74,6 +75,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['address']", "Address is not entered correctly. Please try again.");
                 $isValid = false;
             }
 
@@ -83,6 +85,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['city']", "City is not entered correctly. Please try again.");
                 $isValid = false;
             }
 
@@ -92,6 +95,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['state']", "State is not entered correctly. Please try again.");
                 $isValid = false;
             }
 
@@ -101,6 +105,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['zip']", "Zip is not entered correctly. Please try again.");
                 $isValid = false;
             }
 
@@ -110,6 +115,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['phone']", "Phone is not entered correctly. Please try again.");
                 $isValid = false;
             }
 
@@ -119,6 +125,7 @@ $f3->route('GET|POST /signup',
             }
             else
             {
+                $f3->set("errors['email']", "Email is not entered correctly. Please try again.");
                 $isValid = false;
             }
 

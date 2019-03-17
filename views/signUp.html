@@ -21,6 +21,27 @@
     <div id="signUpDiv">
         <form action="#" method="post" id="signupForm">
             <h1>Sign Up</h1>
+            <check if="{{ isset(@errors['name']) }}">
+                <p>{{ @errors['name']}}</p>
+            </check>
+            <check if="{{ isset(@errors['address']) }}">
+                <p>{{ @errors['address']}}</p>
+            </check>
+            <check if="{{ isset(@errors['city']) }}">
+                <p>{{ @errors['city']}}</p>
+            </check>
+            <check if="{{ isset(@errors['state']) }}">
+                <p>{{ @errors['state']}}</p>
+            </check>
+            <check if="{{ isset(@errors['zip']) }}">
+                <p>{{ @errors['zip']}}</p>
+            </check>
+            <check if="{{ isset(@errors['phone']) }}">
+                <p>{{ @errors['phone']}}</p>
+            </check>
+            <check if="{{ isset(@errors['email']) }}">
+                <p>{{ @errors['email']}}</p>
+            </check>
             <hr>
             <div class="row border-0 ml-0">
                 <div class="col-md-8">
