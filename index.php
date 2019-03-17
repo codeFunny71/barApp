@@ -30,7 +30,7 @@ if(!$_SESSION['orderItems']) {
     $_SESSION['orderItems'] = [];
 }
 
-$queueItem = [];
+
 
 //Define route
 $f3->route('GET|POST /', function() {
@@ -58,7 +58,8 @@ $f3->route('GET|POST /signup',
 
             Database::insertCustomer($newCustomer);
             $customerID = Database::getCustomerID($email);
-            $_SESSION['customerID'] = $customerID;
+            $custID = $customerID['customerID'];
+            $_SESSION['customerID'] = $custID;
             $_SESSION['newCustomer'] = $newCustomer;
             $f3->reroute('/drinkOrder');
 
@@ -99,20 +100,29 @@ $f3->route('GET|POST /drinkOrder',
         }
 
         if(isset($_POST['enter'])) {
-
+            $queueItem = "";
             $total = $_POST['total'];
             $orderItems = $_SESSION['orderItems'];
             $lineItems = implode(",",$orderItems);
 
             foreach ($menuItems as $item){
-                if(in_array($item['itemID'], $orderItems)){
-                    array_push($queueItem, $item['itemName']);
+                foreach ($orderItems as $drinkID){
+                    if($item['itemID'] == $drinkID){
+                        $queueItem .= $item['itemName'].", ";
+                    }
                 }
+
             }
-            $lineItems = implode(",", $queueItem);
+//            foreach ($menuItems as $item){
+//                if($item['itemID'], $orderItems)){
+//                    array_push($queueItem, $item['itemName']);
+//                }
+//            }
+
+//            $lineItems = implode(",", $queueItem);
 
             $customerID = $_SESSION['customerID'];
-            $newOrder = new Orders($customerID, 1, $lineItems, $total);
+            $newOrder = new Orders($customerID, 1, $queueItem, $total);
             Database::insertOrder($newOrder);
             $orderItems = [];
             $_SESSION['orderItems'] = $orderItems;
