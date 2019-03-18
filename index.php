@@ -85,6 +85,24 @@ $f3->route('GET|POST /home', function() {
     echo $template->render('views/loggedInHP.html');
 });
 
+$f3->route('GET|POST /account', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/accountInfo.html');
+});
+
+$f3->route('GET|POST /payTab', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/payTab.html');
+});
+
+$f3->route('GET|POST /viewTab', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/viewTab.html');
+});
+
 //Define route
 $f3->route('GET|POST /adminLogin', function($f3) {
     global $dbh;
