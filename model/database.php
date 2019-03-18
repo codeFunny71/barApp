@@ -96,6 +96,33 @@ class Database
         return $result['customerID'];
     }
 
+    public static function updateCustomer($update)
+    {
+
+        global $dbh;
+        //1. define the query
+        $sql = "UPDATE customers SET emailAddress = :emailAddress, password = :password, firstName = :firstName, lastName = :lastName, address = :address, city = :city, state = :state, zipCode = :zipCode, phone = :phone, account = :account";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':firstName', $update->getFirstName(), PDO::PARAM_STR);
+        $statement->bindParam(':lastName', $update->getLastName(), PDO::PARAM_STR);
+        $statement->bindParam(':address', $update->getAddress(), PDO::PARAM_STR);
+        $statement->bindParam(':city', $update->getCity(), PDO::PARAM_STR);
+        $statement->bindParam(':state', $update->getState(), PDO::PARAM_STR);
+        $statement->bindParam(':zipCode', $update->getZipCode(), PDO::PARAM_STR);
+        $statement->bindParam(':phone', $update->getPhone(), PDO::PARAM_STR);
+        $statement->bindParam(':emailAddress', $update->getEmail(), PDO::PARAM_STR);
+        $statement->bindParam(':password', $update->getPassword(), PDO::PARAM_STR);
+        $statement->bindParam(':account', $update->getAccount(), PDO::PARAM_INT);
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     /**
      * @return array
      */
