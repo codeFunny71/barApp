@@ -2,6 +2,7 @@
 
 /**
  * Class Orders
+ * This class creates an order Object
  */
 class Orders
 {
@@ -15,13 +16,13 @@ class Orders
 
     /**
      * Orders constructor.
-     * @param $_customerID
-     * @param $_barID
-     * @param $_itemsOrdered
-     * @param $_tip
-     * @param $_tax
-     * @param $_total
-     * @param $_status
+     * @param $_customerID the id of the customer
+     * @param $_barID the id of the bar
+     * @param $_itemsOrdered the items ordered
+     * @param $_tip the tip
+     * @param $_tax the tax
+     * @param $_total the total
+     * @param $_status the order's status
      */
     public function __construct($_customerID, $_barID, $_itemsOrdered,  $_total, $_status = 0, $_tax = .1, $_tip = 0)
     {
@@ -35,7 +36,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter returns the customer's id
+     * @return customer's id
      */
     public function getCustomerID()
     {
@@ -43,7 +45,8 @@ class Orders
     }
 
     /**
-     * @param mixed $customerID
+     * This setter sets the customer's id
+     * @param mixed $customerID customer's id
      */
     public function setCustomerID($customerID)
     {
@@ -51,7 +54,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter returns the bar's id
+     * @return bar's id
      */
     public function getBarID()
     {
@@ -59,6 +63,7 @@ class Orders
     }
 
     /**
+     * This setter sets the bar's id
      * @param mixed $barID
      */
     public function setBarID($barID)
@@ -67,7 +72,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter returns the items ordered
+     * @return the items ordered
      */
     public function getItemsOrdered()
     {
@@ -75,7 +81,8 @@ class Orders
     }
 
     /**
-     * @param mixed $itemsOrdered
+     * This setter sets the items ordered
+     * @param mixed $itemsOrdered the items ordered
      */
     public function setItemsOrdered($itemsOrdered)
     {
@@ -83,7 +90,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter gets the tip
+     * @return the tip
      */
     public function getTip()
     {
@@ -91,6 +99,7 @@ class Orders
     }
 
     /**
+     * This setter sets the tip for the order
      * @param mixed $tip
      */
     public function setTip($tip)
@@ -99,7 +108,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter returns the tax for the order
+     * @return the tax
      */
     public function getTax()
     {
@@ -107,7 +117,8 @@ class Orders
     }
 
     /**
-     * @param mixed $tax
+     * This setter sets the tax for the order
+     * @param mixed $tax the tax
      */
     public function setTax($tax)
     {
@@ -115,7 +126,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter returns the total for the order
+     * @return the total
      */
     public function getTotal()
     {
@@ -123,7 +135,8 @@ class Orders
     }
 
     /**
-     * @param mixed $total
+     * This setter sets the total for the order
+     * @param mixed $total the total
      */
     public function setTotal($total)
     {
@@ -131,7 +144,8 @@ class Orders
     }
 
     /**
-     * @return mixed
+     * This getter returns the status of the order
+     * @return the status of the order
      */
     public function getStatus()
     {
@@ -139,7 +153,8 @@ class Orders
     }
 
     /**
-     * @param mixed $status
+     * This setter sets the status of the order
+     * @param mixed $status the status of the order
      */
     public function setStatus($status)
     {

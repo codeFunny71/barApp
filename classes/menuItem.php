@@ -2,6 +2,7 @@
 
 /**
  * Class MenuItem
+ * This class creates a menu item Object
  */
 class MenuItem
 {
@@ -13,11 +14,11 @@ class MenuItem
 
     /**
      * MenuItem constructor.
-     * @param $_itemName
-     * @param $_description
-     * @param $_itemPrice
-     * @param $_image
-     * @param $_categoryID
+     * @param $_itemName the name of the item
+     * @param $_description the description of the item
+     * @param $_itemPrice the price of the item
+     * @param $_image the image for the item
+     * @param $_categoryID the category of the id
      */
     public function __construct($_itemName, $_description, $_itemPrice, $_image, $_categoryID)
     {
@@ -29,7 +30,8 @@ class MenuItem
     }
 
     /**
-     * @return mixed
+     * This getter returns the name of the item
+     * @return the item name
      */
     public function getItemName()
     {
@@ -37,7 +39,8 @@ class MenuItem
     }
 
     /**
-     * @param mixed $itemName
+     * This setter sets the name of the item
+     * @param mixed $itemName the name of the item
      */
     public function setItemName($itemName)
     {
@@ -45,7 +48,8 @@ class MenuItem
     }
 
     /**
-     * @return mixed
+     * This getter returns the description of the item
+     * @return the item description
      */
     public function getDescription()
     {
@@ -53,7 +57,8 @@ class MenuItem
     }
 
     /**
-     * @param mixed $description
+     * This setter sets the description for the item
+     * @param mixed $description the item description
      */
     public function setDescription($description)
     {
@@ -61,7 +66,8 @@ class MenuItem
     }
 
     /**
-     * @return mixed
+     * This getter returns the price of the item
+     * @return the price
      */
     public function getItemPrice()
     {
@@ -69,7 +75,8 @@ class MenuItem
     }
 
     /**
-     * @param mixed $itemPrice
+     * This setter sets the price of the item
+     * @param mixed $itemPrice the item's price
      */
     public function setItemPrice($itemPrice)
     {
@@ -77,7 +84,8 @@ class MenuItem
     }
 
     /**
-     * @return mixed
+     * This getter gets the image for the item
+     * @return the image for the item
      */
     public function getImage()
     {
@@ -85,6 +93,7 @@ class MenuItem
     }
 
     /**
+     * This setter sets the image for the item
      * @param mixed $image
      */
     public function setImage($image)
@@ -93,7 +102,8 @@ class MenuItem
     }
 
     /**
-     * @return mixed
+     * This getter gets the category for the item
+     * @return the category
      */
     public function getCategoryID()
     {
@@ -101,7 +111,8 @@ class MenuItem
     }
 
     /**
-     * @param mixed $categoryID
+     * This setter sets the category of the item
+     * @param mixed $categoryID the item's category
      */
     public function setCategoryID($categoryID)
     {

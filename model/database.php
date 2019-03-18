@@ -1,8 +1,15 @@
 <?php
 
-
+/**
+ * Class Database
+ * This class creates a Database object for connecting to the db
+ */
 class Database
 {
+    /**
+     * This function connects to the database
+     * @return PDO|void
+     */
     public function connect()
     {
         try {
@@ -26,6 +33,11 @@ class Database
         }
     }
 
+    /**
+     * This function inserts a customer into the database
+     * @param $newMem the new member to be added
+     * @return bool true if the insertion was successful, false if not
+     */
     public static function insertCustomer($newMem)
     {
         $newAdd = $newMem;
@@ -59,7 +71,8 @@ class Database
     }
 
     /**
-     * @return array
+     * This function returns all the customers in the database
+     * @return array the customers
      */
     public static function getCustomers()
     {
@@ -78,6 +91,11 @@ class Database
         return $result;
     }
 
+    /**
+     * This function gets the customer object
+     * @param $emailAddress the email address of the customer to return
+     * @return array the array of the object's elements
+     */
     public static function getCustomerID($emailAddress)
     {
 
@@ -96,6 +114,11 @@ class Database
         return $result;
     }
 
+    /**
+     * This function updates a customer's data
+     * @param $update the customer to update
+     * @return array the row matching the customer to update
+     */
     public static function updateCustomer($update)
     {
 
@@ -124,7 +147,8 @@ class Database
     }
 
     /**
-     * @return array
+     * This function gets the menu items from the bar
+     * @return array the menu items
      */
     public static function getMenuItems()
     {
@@ -144,6 +168,11 @@ class Database
         return $result;
     }
 
+    /**
+     * This function gets the menu items by id
+     * @param $id the id to search
+     * @return array the array of items
+     */
     public static function getMenuItemByID($id)
     {
 
@@ -162,6 +191,11 @@ class Database
         return $result;
     }
 
+    /**
+     * This function inserts an order
+     * @param $newOrder the order to insert
+     * @return bool return true if successful, false if not
+     */
     public static function insertOrder($newOrder)
     {
         global $dbh;
@@ -187,7 +221,8 @@ class Database
     }
 
     /**
-     * @return array
+     * This function gets the current orders
+     * @return array the orders to be filled
      */
     public static function getOrders()
     {
@@ -208,9 +243,9 @@ class Database
 
 
     /**
-     *
-     * @param $orderID
-     * @return array
+     * This function updates the current orders
+     * @param $orderID the id of the order
+     * @return array the array of orders
      */
     public static function updateOrders($orderID)
     {

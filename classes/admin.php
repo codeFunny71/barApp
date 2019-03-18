@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Admin
+ * Class Admin this class creates an admin Object
  */
 class Admin
 {
@@ -17,15 +17,15 @@ class Admin
 
     /**
      * Admin constructor.
-     * @param $_userName
-     * @param $_password
-     * @param $_barName
-     * @param $_barAddress
-     * @param $_city
-     * @param $_state
-     * @param $_zipCode
-     * @param $_email
-     * @param $_phone
+     * @param $_userName the username of the admin
+     * @param $_password the password for the admin
+     * @param $_barName the name of the bar
+     * @param $_barAddress the address of the bar
+     * @param $_city the city the bar is located in
+     * @param $_state the state the bar is located in
+     * @param $_zipCode the zipcode of the bar
+     * @param $_email the email for the admin
+     * @param $_phone the phone number for the admin
      */
     public function __construct($_userName, $_password, $_barName, $_barAddress, $_city, $_state, $_zipCode, $_email, $_phone)
     {
@@ -41,7 +41,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the username of the user
+     * @return the username of the user
      */
     public function getUserName()
     {
@@ -49,7 +50,8 @@ class Admin
     }
 
     /**
-     * @param mixed $userName
+     * This setter sets the username
+     * @param $userName the username of the user
      */
     public function setUserName($userName)
     {
@@ -57,7 +59,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the password for the user
+     * @return the password for the user
      */
     public function getPassword()
     {
@@ -65,7 +68,8 @@ class Admin
     }
 
     /**
-     * @param mixed $password
+     * This setter sets the password for the user
+     * @param $password the password for the user
      */
     public function setPassword($password)
     {
@@ -73,7 +77,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the name of the bar
+     * @return the bar name
      */
     public function getBarName()
     {
@@ -81,7 +86,8 @@ class Admin
     }
 
     /**
-     * @param mixed $barName
+     * This setter sets the name of the bar
+     * @param mixed $barName the bar name
      */
     public function setBarName($barName)
     {
@@ -89,7 +95,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the address of the bar
+     * @return the address of the bar
      */
     public function getBarAddress()
     {
@@ -97,6 +104,7 @@ class Admin
     }
 
     /**
+     * This setter sets the address of the bar
      * @param mixed $barAddress
      */
     public function setBarAddress($barAddress)
@@ -105,7 +113,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the city of the bar
+     * @return the city of the bar
      */
     public function getCity()
     {
@@ -113,7 +122,8 @@ class Admin
     }
 
     /**
-     * @param mixed $city
+     * This setter sets the city of the bar
+     * @param mixed $city the city of the bar
      */
     public function setCity($city)
     {
@@ -121,7 +131,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the state of the bar
+     * @return mixed the state the bar is located in
      */
     public function getState()
     {
@@ -129,7 +140,8 @@ class Admin
     }
 
     /**
-     * @param mixed $state
+     * This setter sets the state the bar is located in
+     * @param mixed $state the state the bar is located in
      */
     public function setState($state)
     {
@@ -137,7 +149,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the zipcode for the bar
+     * @return the zipcode of the bar
      */
     public function getZipCode()
     {
@@ -145,7 +158,8 @@ class Admin
     }
 
     /**
-     * @param mixed $zipCode
+     * This setter sets the zipcode of the bar
+     * @param mixed $zipCode the zipcode for the bar
      */
     public function setZipCode($zipCode)
     {
@@ -153,7 +167,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the email of the admin
+     * @return the email of the admin
      */
     public function getEmail()
     {
@@ -161,7 +176,8 @@ class Admin
     }
 
     /**
-     * @param mixed $email
+     * This setter sets the email of the admin
+     * @param mixed $email the email of the admin
      */
     public function setEmail($email)
     {
@@ -169,7 +185,8 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * This getter returns the phone number of the admin
+     * @return the phone number
      */
     public function getPhone()
     {
@@ -177,7 +194,8 @@ class Admin
     }
 
     /**
-     * @param mixed $phone
+     * This setter sets the phone number for the admin
+     * @param mixed $phone the phone number
      */
     public function setPhone($phone)
     {
