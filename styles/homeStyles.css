@@ -12,11 +12,17 @@
     border-radius: 25px;
     z-index: 1;
     float: right;
-    /*margin-top: 15%;*/
-    /*margin-right: 20%;*/
+    margin-top: 10%;
+    margin-right: 10%;
     padding: 20px;
     background-color: grey;
     box-shadow: 10px 10px 5px black;
+    max-width: 40%;
+}
+
+label {
+    float: right;
+    padding-right: 150px;
 }
 
 a {
@@ -46,6 +52,13 @@ button {
     width: 50%;
 }
 
+@media screen and (min-device-width: 1001px) and (max-device-width: 1800px) {
+    label {
+        float: right;
+        padding-right: 100px;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     #homeVideo {
         display: none;
@@ -69,6 +82,7 @@ button {
         float: none;
         z-index: 1;
         box-shadow: 5px 5px 10px black;
+        min-width: 75%;
         /*color: lightgray;*/
     }
 }
