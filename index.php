@@ -1,5 +1,5 @@
 <?php
-//ob_start();
+ob_start();
 /**
  * Marcus Absher
  * Date: 3-1-19
@@ -15,7 +15,7 @@ require_once('vendor/autoload.php');
 session_start();
 require_once('model/database.php');
 require_once('model/validation.php');
-//print_r($_SESSION);
+print_r($_SESSION);
 
 $valid = false;
 //create an instance of the Base class
@@ -33,7 +33,7 @@ if(!$_SESSION['orderItems']) {
 
 
 
-//Define route
+//Define Default route
 $f3->route('GET|POST /', function($f3) {
     global $dbh;
 
@@ -62,6 +62,9 @@ $f3->route('GET|POST /', function($f3) {
 
         if (!empty($result))
         {
+            //pull customer info
+            $currentCustomer = Database::getCustomerID($_POST['email']);
+            $_SESSION['customerID'] = $currentCustomer['customerID'];
             //reroute
             $f3 -> reroute('/home');
         }
@@ -81,6 +84,7 @@ $f3->route('GET|POST /', function($f3) {
 //Define route
 $f3->route('GET|POST /home', function() {
     //load a template
+    echo $_SESSION['customerID'];
     $template = new Template();
     echo $template->render('views/loggedInHP.html');
 });
@@ -251,7 +255,6 @@ $f3->route('GET|POST /drinkOrder',
         $f3->set('orderItems',$_SESSION['orderItems'] );
         print_r($_POST);
 
-
         if(isset($_POST['submit']) ) {
             $itemID = $_POST['submit'];
             $orderItems = $_SESSION['orderItems'];
@@ -260,9 +263,11 @@ $f3->route('GET|POST /drinkOrder',
             $f3->set('orderItems',$orderItems );
 
             foreach ($menuItems as $item){
-               if(in_array($item['itemID'], $orderItems)){
-                   $total += $item['itemPrice'];
-               }
+                foreach ($orderItems as $drinkID){
+                    if($item['itemID'] == $drinkID){
+                        $total += $item['itemPrice'];
+                    }
+                }
             }
             $f3->set('total',$total );
 
@@ -280,7 +285,6 @@ $f3->route('GET|POST /drinkOrder',
                         $queueItem .= $item['itemName'].", ";
                     }
                 }
-
             }
             $customerID = $_SESSION['customerID'];
             $newOrder = new Orders((int)$customerID, 1, $queueItem, $total);
@@ -317,4 +321,4 @@ $f3->route('GET|POST /AdminView',
 );
 
 $f3->run();
-//ob_flush();
+ob_flush();

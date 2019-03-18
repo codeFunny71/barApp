@@ -93,7 +93,7 @@ class Database
         //5. return the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         //print_r($result);
-        return $result['customerID'];
+        return $result;
     }
 
     public static function updateCustomer($update)

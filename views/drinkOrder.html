@@ -6,51 +6,49 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="styles/test.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    <a href="home">BACK</a>
-    <form action="" method="post" >
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Item Price</th>
-                <th scope="col"></th>
-
-            </tr>
-            </thead>
-            <tbody>
+<div class="wrapper">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3">
+        <a href="home">BACK</a>
+        <form action="" method="post">
             <repeat group="{{ @menuItems }}" value="{{ @element }}">
-                <tr>
-                    <td>{{ @element[image] }}</td>
-                    <td>{{ @element[itemName]}}</td>
-                    <td>{{ @element[description]}}</td>
-                    <td>{{ @element[itemPrice]}}</td>
-                    <td><button class="btn" type="submit" value="{{@element['itemID']}}" name="submit">ADD</button></td>
-                </tr>
+                <div class="media">
+                        <div class="image"><image src="{{ @element[image] }}" alt="{{ @element[itemName]}}"></image></div>
+                    <div class="drink">{{ @element[itemName]}}</div>
+                        <div class="text">{{ @element[description]}}
+                        </div>
+                    <div class="price">{{ @element[itemPrice]}}
+                    </div>
+                    <button class="push" type="submit" name="submit" value="{{@element['itemID']}}">ADD</button>
+                </div>
             </repeat>
+            <br>
+        </form>
+    </div>
+    <div class="box4">
+        <div>
+            <repeat group="{{ @menuItems }}" value="{{ @item }}">
+                <repeat group="{{ @orderItems }}" value="{{ @element }}">
+                <check if="{{@item[itemID] == @element}}">
+                    <p>{{@item[itemName]}} <span class="mr-2">&nbsp;</span>{{@item[itemPrice]}}</p>
+                </check>
+                </repeat>
 
+            </repeat>
+            <h4> Total: {{@total }}</h4>
+            <form action="#" method="post">
+                <input type="hidden" name="total" value="{{@total}}">
+                <button type="submit" name="enter" id="enter">ENTER ORDER</button>
+            </form>
+        </div>
 
-            </tbody>
-        </table>
-    </form>
-</div>
-<div>
-    <repeat group="{{ @menuItems }}" value="{{ @item }}">
-        <check if="{{@orderItems && in_array(@item[itemID], @orderItems)}}">
-            <p>{{@item[itemName]}}<span class="mr-2"></span>{{@item[itemPrice]}}</p>
-        </check>
-
-
-    </repeat>
-    <h4> Total: {{@total }}</h4>
-    <form action="#" method="post">
-        <input type="hidden" name="total" value="{{@total}}">
-        <button type="submit" name="enter" id="enter">ENTER ORDER</button>
-    </form>
+    </div>
+    <div class="box5"></div>
+    <div class="box6"></div>
 </div>
 </body>
 </html>
