@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Online Bartender - Admin Login</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="styles/adminLoginStyles.css" rel="stylesheet">
+</head>
+<body>
+<video autoplay muted loop id="homeVideo">
+    <source src="video/homeVideo.mp4" type="video/mp4">
+</video>
+<video autoplay muted loop id="mobileHomeVideo">
+    <source src="video/bubblingBeer.mp4" type="video/mp4">
+</video>
+
+<!-- div containing sign up -->
+<div id="logIn">
+    <h1 id="homeHeaderStyles">Admin/Bartender Login</h1><br>
+    <form action="AdminView" method="post">
+        <label>Username:
+            <input type="text" id="email" name="email"><br><br>
+        </label><br>
+        <label>Password:
+            <input type="text" id="password" name="password"><br><br>
+        </label>
+        <div id="buttonStyles">
+            <button id="submitLogIn" type="submit" name="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

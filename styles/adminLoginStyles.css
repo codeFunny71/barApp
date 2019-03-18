@@ -1,0 +1,75 @@
+#homeVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+}
+
+#logIn {
+    position: relative;
+    border-radius: 25px;
+    z-index: 1;
+    float: right;
+    margin-top: 15%;
+    margin-right: 20%;
+    padding: 20px;
+    background-color: grey;
+    color: white;
+    box-shadow: 10px 10px 5px black;
+}
+
+a {
+    float: right;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+#buttonStyles, #signUpStyles, #homeHeaderStyles {
+    text-align: center;
+}
+
+h1 {
+    font-family: "Impact", Charcoal, sans-serif;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+}
+
+p, label {
+    font-size: 1.5em;
+}
+
+#linkStyles {
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+button {
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    #homeVideo {
+        display: none;
+    }
+
+    #mobileHomeVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 0;
+    }
+
+    #logIn {
+        position: relative;
+        width: 60%;
+        height: 60%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        z-index: 1;
+        box-shadow: 5px 5px 10px black;
+        /*color: lightgray;*/
+    }
+}
+

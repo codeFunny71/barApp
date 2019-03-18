@@ -1,0 +1,79 @@
+#mobileHomeVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+}
+
+body {
+    padding-top: 20px;
+}
+
+#loggedInDiv {
+    background-image: url("http://bgfons.com/upload/iron_texture78.jpg");
+    position: relative;
+    border-radius: 25px;
+    width: 60%;
+    height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    padding: 40px 20px 20px 20px;
+    z-index: 1;
+    box-shadow: 5px 5px 10px black;
+    /*background-color: lightgray;*/
+    color: black;
+    text-align: center;
+}
+
+#beerOptions {
+    display:inline-block;
+    width:240px;
+    margin-right:30px;
+    text-align: left;
+}
+
+a {
+    color: goldenrod;
+    font-size: 1.5em;
+}
+
+h1 {
+    font-family: "Impact", Charcoal, sans-serif;
+    text-shadow: 1px 1px 2px goldenrod, 0 0 25px goldenrod, 0 0 5px goldenrod;
+}
+
+.orderMenuOption {
+    font-family: "Impact", Charcoal, sans-serif;
+    text-shadow: 1px 1px 2px goldenrod, 0 0 25px goldenrod, 0 0 5px goldenrod;
+}
+
+.menuOption {
+    color: goldenrod;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+}
+
+img {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#beerOptions, #mdOptions {
+    text-align: right;
+}
+
+.menuItem {
+    background-color: goldenrod;
+    width: 50%;
+    position: relative;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    padding: 10px;
+    box-shadow: 5px 5px 10px black;
+}
