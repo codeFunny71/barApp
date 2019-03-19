@@ -202,6 +202,9 @@ $f3->route('GET|POST /drinkOrder',
         if (isset($_SESSION['currentCustomer'])) {
             $customer = $_SESSION['currentCustomer'];
         }
+        if (isset($_SESSION['customer'])) {
+            $customer = $_SESSION['customer'];
+        }
         $menuItems = Database::getMenuItems();
         $f3->set('menuItems', $menuItems);
         $f3->set('total', $total);
@@ -241,8 +244,8 @@ $f3->route('GET|POST /drinkOrder',
             }
             $customerID = $_SESSION['customerID'];
             //adding total to
-            $accountTotal += $customer->getAccount() + $total;
-            $customer->setAccount($accountTotal);
+            $accountTotal += $customer['account'] + $total;
+            $customer['account'] = $accountTotal;
             $_SESSION['customer'] = $customer;
             $newOrder = new Orders((int)$customerID, 1, $queueItem, $total);
             Database::insertOrder($newOrder);
@@ -285,6 +288,10 @@ $f3->route('GET|POST /account', function($f3) {
     if (isset($_SESSION['currentCustomer'])) {
         $customer = $_SESSION['currentCustomer'];
     }
+    if (isset($_SESSION['customer'])) {
+        $customer = $_SESSION['customer'];
+    }
+
         $fname = $customer['firstName'];
         $lname = $customer['lastName'];
         $email = $customer['emailAddress'];
@@ -294,6 +301,7 @@ $f3->route('GET|POST /account', function($f3) {
         $zip = $customer['zipCode'];
         $phone = $customer['phone'];
         $password = $customer['password'];
+        $account = $customer['account'];
 
     $customerID = $customer['customerID'];
     $f3->set('customerID', $customerID);
@@ -312,25 +320,11 @@ $f3->route('GET|POST /account', function($f3) {
     $f3->set('zip', $zip);
     $f3->set('phone', $phone);
     $f3->set('password', $password);
-
+    $f3->set('account', $account);
 
     //load a template
     $template = new Template();
     echo $template->render('views/accountInfo.html');
-});
-
-//view customer tab
-$f3->route('GET|POST /viewTab', function() {
-    //load a template
-    $template = new Template();
-    echo $template->render('views/viewTab.html');
-});
-
-//route for paying tab
-$f3->route('GET|POST /payTab', function() {
-    //load a template
-    $template = new Template();
-    echo $template->render('views/payTab.html');
 });
 
 //Admin login route
