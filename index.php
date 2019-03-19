@@ -1,5 +1,5 @@
 <?php
-ob_start();
+
 /**
  * Marcus Absher
  * Date: 3-1-19
@@ -289,9 +289,11 @@ $f3->route('GET|POST /account', function($f3) {
 
     $customerID = $customer['customerID'];
 
+    $orders = Database::getOrders();
     $cutomerOrders = Database::getOrdersByID($customerID);
 
-
+    $f3->set('customerOrders', $cutomerOrders);
+    $f3->set('orders', $orders);
     $f3->set('fname', $fname);
     $f3->set('lname', $lname);
     $f3->set('email', $email);
