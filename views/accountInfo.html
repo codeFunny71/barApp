@@ -22,7 +22,7 @@
     <div class="col-sm-12" id="logoutButton">
         <a href="home">Home</a>
 
-        <form action="" method="post"><button name="logOut" type="submit" id="logOut">Logout</button></form>
+        <form action="" method="post"><button name="logOut" type="submit" id="logOut" class="btn btn-warning">Logout</button></form>
     </div>
 
     <div class="row">
@@ -102,27 +102,21 @@
                                     <div>
                                         <input type="text" class="form-control"  name="fname" id="fname" value="{{@fname}}">
                                     </div>
-                                    <span class="err" id="fnameError">
-                                First name is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="lname" >Last Name</label>
                                     <div>
                                         <input type="text" class="form-control"  name="lname" id="lname" value="{{@lname}}">
                                     </div>
-                                    <span class="err" id="lnameError">
-                                Last name is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <div class="form-group"><!--Age -->
                                     <label class="font-weight-bold" for="address" >Address</label>
                                     <div>
                                         <input type="text" class="form-control"  name="address" id="address" value="{{@address}}">
                                     </div>
-                                    <span class="err" id="addressError">
-                                Address is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="city">City</label>
@@ -131,50 +125,38 @@
                                             <input type="text" class="form-control"  name="city" id="city" value="{{@city}}">
                                         </div>
                                     </div>
-                                    <span class="err" id="cityError">
-                                City is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="state" >State</label>
                                     <div>
                                         <input type="text" class="form-control"  name="state" id="state" value="{{@state}}">
                                     </div>
-                                    <span class="err" id="stateError">
-                                State is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="zip" >Zip</label>
                                     <div>
                                         <input type="text" class="form-control"  name="zip" id="zip" value="{{@zip}}">
                                     </div>
-                                    <span class="err" id="zipError">
-                                Zipcode is invalid. Please try again.
-                            </span>
+
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <label class="font-weight-bold" for="phone" >Phone (ex. 1234567890)</label>
                                 <div>
                                     <input type="text" class="form-control"  name="phone" id="phone" value="{{@phone}}">
-                                    <span class="err" id="phoneError">
-                                Phone number is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <label class="font-weight-bold" for="email" >Email</label>
                                 <div>
                                     <input type="text" class="form-control"  name="email" id="email" value="{{@email}}">
-                                    <span class="err" id="emailError">
-                                Email is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <label class="font-weight-bold" for="password" >Password</label>
                                 <div>
                                     <input type="text" class="form-control"  name="password" id="password" value="{{@password}}">
-                                    <span class="err" id="passwordError">
-                                Password is invalid. Please try again.
-                            </span>
+
                                 </div>
                                 <label class="font-weight-bold" for="account" >Account</label>
                                 <div>
@@ -188,7 +170,7 @@
                             </div>
                             <div class="col-md-2"><!--next button column  -->
                                 <div>
-                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" name="submit" class="btn btn-warning">Submit</button>
                                 </div>
                             </div>
                         </div>
