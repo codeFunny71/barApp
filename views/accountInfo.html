@@ -32,155 +32,163 @@
     </div>
     </div>
     <!-- table or row of data will go here -->
-    <div class="wrapper">
-    <div class="left">
-        <!-- div containing sign up -->
-        <div id="signUpDiv">
-            <form action="#" method="post" id="signupForm">
-                <check if="{{ isset(@errors['name']) }}">
-                    <p>{{ @errors['name']}}</p>
-                </check>
-                <check if="{{ isset(@errors['address']) }}">
-                    <p>{{ @errors['address']}}</p>
-                </check>
-                <check if="{{ isset(@errors['city']) }}">
-                    <p>{{ @errors['city']}}</p>
-                </check>
-                <check if="{{ isset(@errors['state']) }}">
-                    <p>{{ @errors['state']}}</p>
-                </check>
-                <check if="{{ isset(@errors['zip']) }}">
-                    <p>{{ @errors['zip']}}</p>
-                </check>
-                <check if="{{ isset(@errors['phone']) }}">
-                    <p>{{ @errors['phone']}}</p>
-                </check>
-                <check if="{{ isset(@errors['email']) }}">
-                    <p>{{ @errors['email']}}</p>
-                </check>
-                <hr>
-                <div class="row border-0 ml-0">
-                    <div class="col-md-8">
-                        <div class="form-group"><!--Name -->
-                            <label class="font-weight-bold" for="fname" >First Name</label>
-                            <div>
-                                <input type="text" class="form-control"  name="fname" id="fname" value="{{@fname}}">
-                            </div>
-                            <span class="err" id="fnameError">
-                            First name is invalid. Please try again.
-                        </span>
-                        </div>
-                        <div class="form-group">
-                            <label class="font-weight-bold" for="lname" >Last Name</label>
-                            <div>
-                                <input type="text" class="form-control"  name="lname" id="lname" value="{{@lname}}">
-                            </div>
-                            <span class="err" id="lnameError">
-                            Last name is invalid. Please try again.
-                        </span>
-                        </div>
-                        <div class="form-group"><!--Age -->
-                            <label class="font-weight-bold" for="address" >Address</label>
-                            <div>
-                                <input type="text" class="form-control"  name="address" id="address" value="{{@address}}">
-                            </div>
-                            <span class="err" id="addressError">
-                            Address is invalid. Please try again.
-                        </span>
-                        </div>
-                        <div class="form-group">
-                            <label class="font-weight-bold" for="city">City</label>
-                            <div>
-                                <div>
-                                    <input type="text" class="form-control"  name="city" id="city" value="{{@city}}">
+        <div class="wrapper">
+
+        <div class="top">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Order Items</th>
+                    <th scope="col">Round</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <repeat group="{{ @orders }}" value="{{ @order }}">
+                    <check if="@order[customerID] == {{@customerID}}">
+                        <tr>
+                            <td>{{@order[orderID]}}</td>
+                            <td>{{@order[customerID]}}</td>
+                            <td>{{@order[itemsOrdered]}}</td>
+                            <td>{{@order[total]}}</td>
+
+                            <!-- need to ad   -->
+                            <td>Total:{{@account}}</td>
+                        </tr>
+                    </check>
+                </repeat>
+                </tbody>
+            </table>
+        </div>
+            <div class="bottom">
+                <!-- div containing sign up -->
+                <div id="signUpDiv">
+                    <form action="#" method="post" id="signupForm">
+                        <check if="{{ isset(@errors['name']) }}">
+                            <p>{{ @errors['name']}}</p>
+                        </check>
+                        <check if="{{ isset(@errors['address']) }}">
+                            <p>{{ @errors['address']}}</p>
+                        </check>
+                        <check if="{{ isset(@errors['city']) }}">
+                            <p>{{ @errors['city']}}</p>
+                        </check>
+                        <check if="{{ isset(@errors['state']) }}">
+                            <p>{{ @errors['state']}}</p>
+                        </check>
+                        <check if="{{ isset(@errors['zip']) }}">
+                            <p>{{ @errors['zip']}}</p>
+                        </check>
+                        <check if="{{ isset(@errors['phone']) }}">
+                            <p>{{ @errors['phone']}}</p>
+                        </check>
+                        <check if="{{ isset(@errors['email']) }}">
+                            <p>{{ @errors['email']}}</p>
+                        </check>
+                        <hr>
+                        <div class="row border-0 ml-0">
+                            <div class="col-md-8">
+                                <div class="form-group"><!--Name -->
+                                    <label class="font-weight-bold" for="fname" >First Name</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="fname" id="fname" value="{{@fname}}">
+                                    </div>
+                                    <span class="err" id="fnameError">
+                                First name is invalid. Please try again.
+                            </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="lname" >Last Name</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="lname" id="lname" value="{{@lname}}">
+                                    </div>
+                                    <span class="err" id="lnameError">
+                                Last name is invalid. Please try again.
+                            </span>
+                                </div>
+                                <div class="form-group"><!--Age -->
+                                    <label class="font-weight-bold" for="address" >Address</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="address" id="address" value="{{@address}}">
+                                    </div>
+                                    <span class="err" id="addressError">
+                                Address is invalid. Please try again.
+                            </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="city">City</label>
+                                    <div>
+                                        <div>
+                                            <input type="text" class="form-control"  name="city" id="city" value="{{@city}}">
+                                        </div>
+                                    </div>
+                                    <span class="err" id="cityError">
+                                City is invalid. Please try again.
+                            </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="state" >State</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="state" id="state" value="{{@state}}">
+                                    </div>
+                                    <span class="err" id="stateError">
+                                State is invalid. Please try again.
+                            </span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="zip" >Zip</label>
+                                    <div>
+                                        <input type="text" class="form-control"  name="zip" id="zip" value="{{@zip}}">
+                                    </div>
+                                    <span class="err" id="zipError">
+                                Zipcode is invalid. Please try again.
+                            </span>
                                 </div>
                             </div>
-                            <span class="err" id="cityError">
-                            City is invalid. Please try again.
-                        </span>
-                        </div>
-                        <div class="form-group">
-                            <label class="font-weight-bold" for="state" >State</label>
-                            <div>
-                                <input type="text" class="form-control"  name="state" id="state" value="{{@state}}">
+                            <div class="col-md-4">
+                                <label class="font-weight-bold" for="phone" >Phone (ex. 1234567890)</label>
+                                <div>
+                                    <input type="text" class="form-control"  name="phone" id="phone" value="{{@phone}}">
+                                    <span class="err" id="phoneError">
+                                Phone number is invalid. Please try again.
+                            </span>
+                                </div>
+                                <label class="font-weight-bold" for="email" >Email</label>
+                                <div>
+                                    <input type="text" class="form-control"  name="email" id="email" value="{{@email}}">
+                                    <span class="err" id="emailError">
+                                Email is invalid. Please try again.
+                            </span>
+                                </div>
+                                <label class="font-weight-bold" for="password" >Password</label>
+                                <div>
+                                    <input type="text" class="form-control"  name="password" id="password" value="{{@password}}">
+                                    <span class="err" id="passwordError">
+                                Password is invalid. Please try again.
+                            </span>
+                                </div>
+                                <label class="font-weight-bold" for="account" >Account</label>
+                                <div>
+                                    <input type="text" class="form-control"  name="account" id="account" value="{{@account}}">
+                                </div>
                             </div>
-                            <span class="err" id="stateError">
-                            State is invalid. Please try again.
-                        </span>
                         </div>
-                        <div class="form-group">
-                            <label class="font-weight-bold" for="zip" >Zip</label>
-                            <div>
-                                <input type="text" class="form-control"  name="zip" id="zip" value="{{@zip}}">
-                            </div>
-                            <span class="err" id="zipError">
-                            Zipcode is invalid. Please try again.
-                        </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="phone" >Phone (ex. 1234567890)</label>
-                        <div>
-                            <input type="text" class="form-control"  name="phone" id="phone" value="{{@phone}}">
-                            <span class="err" id="phoneError">
-                            Phone number is invalid. Please try again.
-                        </span>
-                        </div>
-                        <label class="font-weight-bold" for="email" >Email</label>
-                        <div>
-                            <input type="text" class="form-control"  name="email" id="email" value="{{@email}}">
-                            <span class="err" id="emailError">
-                            Email is invalid. Please try again.
-                        </span>
-                        </div>
-                        <label class="font-weight-bold" for="password" >Password</label>
-                        <div>
-                            <input type="text" class="form-control"  name="password" id="password" value="{{@password}}">
-                            <span class="err" id="passwordError">
-                            Password is invalid. Please try again.
-                        </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row border-0">
-                    <div class="col-md-10">
+                        <div class="row border-0">
+                            <div class="col-md-10">
 
-                    </div>
-                    <div class="col-md-2"><!--next button column  -->
-                        <div>
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            <div class="col-md-2"><!--next button column  -->
+                                <div>
+                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
-    <div class="right">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Order ID</th>
-                <th scope="col">Customer ID</th>
-                <th scope="col">Order Items</th>
-                <th scope="col">Filled</th>
-            </tr>
-            </thead>
-            <tbody>
-            <repeat group="{{ @orders }}" value="{{ @order }}">
-                <check if="@order[customerID] == 0">
-                    <tr>
-                        <td>{{@order[orderID]}}</td>
-                        <td>{{@order[customerID]}}</td>
-                        <td>{{@order[itemsOrdered]}}</td>
-                        <!-- need to ad   -->
-                        <td><button class="btn" type="submit" value="{{@order['orderID']}}" name="submit">PAY TAB</button></td>
-                    </tr>
-                </check>
-            </repeat>
-            </tbody>
-        </table>
-    </div>
-    </div>
 
 
 </div>
