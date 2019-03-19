@@ -1,15 +1,8 @@
 <?php
 
-/**
- * Class Database
- * This class creates a Database object for connecting to the db
- */
+
 class Database
 {
-    /**
-     * This function connects to the database
-     * @return PDO|void
-     */
     public function connect()
     {
         try {
@@ -33,11 +26,6 @@ class Database
         }
     }
 
-    /**
-     * This function inserts a customer into the database
-     * @param $newMem the new member to be added
-     * @return bool true if the insertion was successful, false if not
-     */
     public static function insertCustomer($newMem)
     {
         $newAdd = $newMem;
@@ -71,8 +59,7 @@ class Database
     }
 
     /**
-     * This function returns all the customers in the database
-     * @return array the customers
+     * @return array
      */
     public static function getCustomers()
     {
@@ -91,11 +78,6 @@ class Database
         return $result;
     }
 
-    /**
-     * This function gets the customer object
-     * @param $emailAddress the email address of the customer to return
-     * @return array the array of the object's elements
-     */
     public static function getCustomerID($emailAddress)
     {
 
@@ -114,11 +96,6 @@ class Database
         return $result[0];
     }
 
-    /**
-     * This function updates a customer's data
-     * @param $update the customer to update
-     * @return array the row matching the customer to update
-     */
     public static function updateCustomer($update)
     {
 
@@ -147,8 +124,7 @@ class Database
     }
 
     /**
-     * This function gets the menu items from the bar
-     * @return array the menu items
+     * @return array
      */
     public static function getMenuItems()
     {
@@ -168,11 +144,6 @@ class Database
         return $result;
     }
 
-    /**
-     * This function gets the menu items by id
-     * @param $id the id to search
-     * @return array the array of items
-     */
     public static function getMenuItemByID($id)
     {
 
@@ -191,11 +162,6 @@ class Database
         return $result;
     }
 
-    /**
-     * This function inserts an order
-     * @param $newOrder the order to insert
-     * @return bool return true if successful, false if not
-     */
     public static function insertOrder($newOrder)
     {
         global $dbh;
@@ -221,8 +187,7 @@ class Database
     }
 
     /**
-     * This function gets the current orders
-     * @return array the orders to be filled
+     * @return array
      */
     public static function getOrders()
     {
@@ -243,9 +208,9 @@ class Database
 
 
     /**
-     * This function updates the current orders
-     * @param $orderID the id of the order
-     * @return array the array of orders
+     *
+     * @param $orderID
+     * @return array
      */
     public static function updateOrders($orderID)
     {
@@ -256,6 +221,27 @@ class Database
         $statement = $dbh->prepare($sql);
         //3. bind parameters
         $statement->bindParam(':orderID', $orderID, PDO::PARAM_STR);
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public static function getOrdersByID($id)
+    {
+        global $dbh;
+        //1. define the query
+        $sql = "SELECT * FROM orders WHERE customerID=:id";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
         //4. execute the statement
         $statement->execute();
         //5. return the result

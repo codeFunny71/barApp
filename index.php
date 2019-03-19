@@ -60,6 +60,7 @@ $f3->route('GET|POST /', function($f3) {
             //pull customer info
             $currentCustomer = Database::getCustomerID($_POST['email']);
             $_SESSION['customerID'] = $currentCustomer['customerID'];
+            $_SESSION['currentCustomer'] = $currentCustomer;
             //reroute
             $f3 -> reroute('/home');
         }
@@ -171,7 +172,7 @@ $f3->route('GET|POST /signup',
 
                 Database::insertCustomer($newCustomer);
                 $customerID = Database::getCustomerID($email);
-                $_SESSION['customerID'] = $customerID;
+                $_SESSION['customerID'] = $customerID['customerID'];
                 $_SESSION['newCustomer'] = $newCustomer;
 
                 $f3->reroute('/drinkOrder');
@@ -251,7 +252,56 @@ $f3->route('GET|POST /drinkOrder',
     });
 
 //customer account route
-$f3->route('GET|POST /account', function() {
+$f3->route('GET|POST /account', function($f3) {
+
+    if (isset($_POST['submit'])){
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $zip = $_POST['zip'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $account = $_POST['account'];
+
+        $update = new Customer($fname, $lname, $address, $city, $state, $zip, $phone, $email, $password, $account);
+        Database::updateCustomer();
+    }
+
+    if (isset($_SESSION['newCustomer'])){
+        $customer = $_SESSION['newCustomer'];
+
+    }
+    if (isset($_SESSION['currentCustomer'])) {
+        $customer = $_SESSION['currentCustomer'];
+    }
+        $fname = $customer['firstName'];
+        $lname = $customer['lastName'];
+        $email = $customer['emailAddress'];
+        $address = $customer['address'];
+        $city = $customer['city'];
+        $state = $customer['state'];
+        $zip = $customer['zipCode'];
+        $phone = $customer['phone'];
+        $password = $customer['password'];
+
+    $customerID = $customer['customerID'];
+
+    $cutomerOrders = Database::getOrdersByID($customerID);
+
+
+    $f3->set('fname', $fname);
+    $f3->set('lname', $lname);
+    $f3->set('email', $email);
+    $f3->set('address', $address);
+    $f3->set('city', $city);
+    $f3->set('state', $state);
+    $f3->set('zip', $zip);
+    $f3->set('phone', $phone);
+    $f3->set('password', $password);
+
 
     //load a template
     $template = new Template();
