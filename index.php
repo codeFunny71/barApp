@@ -173,7 +173,7 @@ $f3->route('GET|POST /signup',
                 Database::insertCustomer($newCustomer);
                 $customerID = Database::getCustomerID($email);
                 $_SESSION['customerID'] = $customerID['customerID'];
-                $_SESSION['newCustomer'] = $newCustomer;
+                $_SESSION['newCustomer'] = $customerID;
 
                 $f3->reroute('/drinkOrder');
             }
@@ -184,7 +184,11 @@ $f3->route('GET|POST /signup',
 );
 
 //Page menu route
-$f3->route('GET|POST /home', function() {
+$f3->route('GET|POST /home', function($f3) {
+    if (isset($_POST['logOut'])){
+        session_destroy();
+        $f3->reroute('/ ');
+    }
     //load a template
     $template = new Template();
     echo $template->render('views/loggedInHP.html');
@@ -264,6 +268,11 @@ $f3->route('GET|POST /drinkOrder',
 
 //customer account route
 $f3->route('GET|POST /account', function($f3) {
+
+    if (isset($_POST['logOut'])){
+        session_destroy();
+        $f3->reroute('/ ');
+    }
 
     if (isset($_POST['submit'])){
         $fname = $_POST['fname'];
