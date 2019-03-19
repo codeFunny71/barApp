@@ -6,14 +6,20 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="styles/test.css" rel="stylesheet">
+    <link href="styles/drinkOrder.css" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
     <div class="box1"></div>
     <div class="box2"></div>
     <div class="box3">
-        <a href="home">BACK</a>
+        <a href="home" id="backButton">BACK</a>
         <form action="" method="post">
             <repeat group="{{ @menuItems }}" value="{{ @element }}">
                 <div class="media">
@@ -23,7 +29,7 @@
                         </div>
                     <div class="price">{{ @element[itemPrice]}}
                     </div>
-                    <button class="push" type="submit" name="submit" value="{{@element['itemID']}}">ADD</button>
+                    <button class="push btn btn-warning" type="submit" name="submit" value="{{@element['itemID']}}">ADD</button>
                 </div>
             </repeat>
             <br>

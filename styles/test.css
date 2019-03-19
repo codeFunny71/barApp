@@ -8,8 +8,8 @@
             "ml mn mn mn mn mn mp mp mr"
             "mb mb mb mb mb mb mb mb mb";
     width: 100%;
-    background-color: #fff4e6;
-    border: 2px solid #f76707;
+    background-color: #e0e0e0;
+    border: 2px solid goldenrod;
 
 }
 
@@ -23,14 +23,14 @@
 
 .box3{
     grid-area: mn;
-    background-color: #ffd8a8;
+    /*background-color: grey;*/
     display: grid;
     overflow-y: auto;
 }
 
 .box4{
     grid-area: mp;
-    background-color: lightcyan;
+    background-color: white;
 }
 
 .box5{
@@ -42,9 +42,9 @@
 }
 
 .media {
-    border: 2px solid #f76707;
+    border: 2px solid goldenrod;
     border-radius: 5px;
-    background-color: #fff4e6;
+    background-color: #e0e0e0;
     width:100%;
 }
 .media {
@@ -61,7 +61,7 @@
 
 .media .image {
     grid-area: img;
-    background-color: #ffd8a8;
+    background-color: #f0ad4e;
     object-fit: cover;
 }
 
