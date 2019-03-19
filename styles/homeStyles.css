@@ -27,7 +27,8 @@ label {
 
 a {
     float: right;
-    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+    color: goldenrod;
 }
 
 #buttonStyles, #signUpStyles, #homeHeaderStyles {
@@ -44,12 +45,13 @@ p, label {
     font-size: 1.5em;
 }
 
-#linkStyles {
-    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+.linkStyles {
+    text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0 5px black;
+    color: goldenrod;
 }
 
 button {
-    width: 50%;
+    width: 65%;
 }
 
 @media screen and (min-device-width: 1001px) and (max-device-width: 1800px) {
