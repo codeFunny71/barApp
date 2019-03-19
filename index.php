@@ -193,10 +193,15 @@ $f3->route('GET|POST /home', function() {
 $f3->route('GET|POST /drinkOrder',
     function($f3) {
         $total = 0;
+        $accountTotal = 0;
         $itemNames = [];
-        //pulling emailAddress
+        if (isset($_SESSION['newCustomer'])){
+            $customer = $_SESSION['newCustomer'];
 
-        $customerInfo = $_SESSION['newCustomer'];
+        }
+        if (isset($_SESSION['currentCustomer'])) {
+            $customer = $_SESSION['currentCustomer'];
+        }
         $menuItems = Database::getMenuItems();
         $f3->set('menuItems', $menuItems);
         $f3->set('total', $total);
@@ -235,7 +240,10 @@ $f3->route('GET|POST /drinkOrder',
                 }
             }
             $customerID = $_SESSION['customerID'];
-
+            //adding total to
+            $accountTotal += $customer->getAccount() + $total;
+            $customer->setAccount($accountTotal);
+            $_SESSION['customer'] = $customer;
             $newOrder = new Orders((int)$customerID, 1, $queueItem, $total);
             Database::insertOrder($newOrder);
             $orderItems = [];
@@ -267,7 +275,7 @@ $f3->route('GET|POST /account', function($f3) {
         $account = $_POST['account'];
 
         $update = new Customer($fname, $lname, $address, $city, $state, $zip, $phone, $email, $password, $account);
-        Database::updateCustomer();
+        Database::updateCustomer($update);
     }
 
     if (isset($_SESSION['newCustomer'])){
@@ -288,6 +296,7 @@ $f3->route('GET|POST /account', function($f3) {
         $password = $customer['password'];
 
     $customerID = $customer['customerID'];
+    $f3->set('customerID', $customerID);
 
     $orders = Database::getOrders();
     $cutomerOrders = Database::getOrdersByID($customerID);
