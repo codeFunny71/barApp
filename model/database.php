@@ -111,7 +111,7 @@ class Database
         //5. return the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         //print_r($result);
-        return $result;
+        return $result[0];
     }
 
     /**

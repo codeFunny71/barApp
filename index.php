@@ -15,7 +15,7 @@ require_once('vendor/autoload.php');
 session_start();
 require_once('model/database.php');
 require_once('model/validation.php');
-print_r($_SESSION);
+
 
 $valid = false;
 //create an instance of the Base class
@@ -30,8 +30,6 @@ $dbh = $data->connect();
 if(!$_SESSION['orderItems']) {
     $_SESSION['orderItems'] = [];
 }
-
-
 
 //Define Default route
 $f3->route('GET|POST /', function($f3) {
@@ -57,9 +55,6 @@ $f3->route('GET|POST /', function($f3) {
         //5. return the result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
-
-
         if (!empty($result))
         {
             //pull customer info
@@ -79,62 +74,6 @@ $f3->route('GET|POST /', function($f3) {
     //load a template
     $template = new Template();
     echo $template->render('views/home.html');
-});
-
-//Define route
-$f3->route('GET|POST /home', function() {
-    //load a template
-    echo $_SESSION['customerID'];
-    $template = new Template();
-    echo $template->render('views/loggedInHP.html');
-});
-
-$f3->route('GET|POST /account', function() {
-    //load a template
-    $template = new Template();
-    echo $template->render('views/accountInfo.html');
-});
-
-$f3->route('GET|POST /payTab', function() {
-    //load a template
-    $template = new Template();
-    echo $template->render('views/payTab.html');
-});
-
-$f3->route('GET|POST /viewTab', function() {
-    //load a template
-    $template = new Template();
-    echo $template->render('views/viewTab.html');
-});
-
-//Define route
-$f3->route('GET|POST /adminLogin', function($f3) {
-    global $dbh;
-
-    if (!empty($_POST))
-    {
-        //1. define the query
-        $sql = "SELECT * FROM customers WHERE emailAddress=:emailAddress AND password=:password";
-        //2. prepare the statement
-        $statement = $dbh->prepare($sql);
-        //3. bind parameters
-        $statement->bindParam(':emailAddress', $_POST['email'], PDO::PARAM_STR);
-        $statement->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
-        //4. execute the statement
-        $statement->execute();
-        //5. return the result
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        if (true)
-        {
-            //reroute
-            $f3 -> reroute('/AdminView');
-        }
-    }
-
-    //load a template
-    $template = new Template();
-    echo $template->render('views/adminLogin.html');
 });
 
 //sign up route
@@ -234,6 +173,7 @@ $f3->route('GET|POST /signup',
                 $customerID = Database::getCustomerID($email);
                 $_SESSION['customerID'] = $customerID;
                 $_SESSION['newCustomer'] = $newCustomer;
+
                 $f3->reroute('/drinkOrder');
             }
         }
@@ -241,6 +181,13 @@ $f3->route('GET|POST /signup',
         echo $view->render('views/signUp.html');
     }
 );
+
+//Page menu route
+$f3->route('GET|POST /home', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/loggedInHP.html');
+});
 
 $f3->route('GET|POST /drinkOrder',
     function($f3) {
@@ -253,7 +200,7 @@ $f3->route('GET|POST /drinkOrder',
         $f3->set('menuItems', $menuItems);
         $f3->set('total', $total);
         $f3->set('orderItems',$_SESSION['orderItems'] );
-        print_r($_POST);
+
 
         if(isset($_POST['submit']) ) {
             $itemID = $_POST['submit'];
@@ -287,6 +234,7 @@ $f3->route('GET|POST /drinkOrder',
                 }
             }
             $customerID = $_SESSION['customerID'];
+
             $newOrder = new Orders((int)$customerID, 1, $queueItem, $total);
             Database::insertOrder($newOrder);
             $orderItems = [];
@@ -302,7 +250,58 @@ $f3->route('GET|POST /drinkOrder',
         echo $template->render('views/drinkOrder.html');
     });
 
-//Display admin view
+//customer account route
+$f3->route('GET|POST /account', function() {
+
+    //load a template
+    $template = new Template();
+    echo $template->render('views/accountInfo.html');
+});
+
+//view customer tab
+$f3->route('GET|POST /viewTab', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/viewTab.html');
+});
+
+//route for paying tab
+$f3->route('GET|POST /payTab', function() {
+    //load a template
+    $template = new Template();
+    echo $template->render('views/payTab.html');
+});
+
+//Admin login route
+$f3->route('GET|POST /adminLogin', function($f3) {
+    global $dbh;
+
+    if (!empty($_POST))
+    {
+        //1. define the query
+        $sql = "SELECT * FROM customers WHERE emailAddress=:emailAddress AND password=:password";
+        //2. prepare the statement
+        $statement = $dbh->prepare($sql);
+        //3. bind parameters
+        $statement->bindParam(':emailAddress', $_POST['email'], PDO::PARAM_STR);
+        $statement->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
+        //4. execute the statement
+        $statement->execute();
+        //5. return the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if (true)
+        {
+            //reroute
+            $f3 -> reroute('/AdminView');
+        }
+    }
+    //load a template
+    $template = new Template();
+    echo $template->render('views/adminLogin.html');
+});
+
+//Display admin view - bartender screen
 $f3->route('GET|POST /AdminView',
     function($f3) {
         if(isset($_POST['submit'])) {
@@ -321,4 +320,3 @@ $f3->route('GET|POST /AdminView',
 );
 
 $f3->run();
-ob_flush();
