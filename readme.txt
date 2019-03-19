@@ -35,4 +35,4 @@
     Did not have time to implement.
 
 - BONUS:  Utilizes an API (Note:  If you do use an API, be sure to talk about it in your presentation.)
-    Not implemented.
+    Chose not to implement.
